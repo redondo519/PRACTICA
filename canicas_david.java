@@ -61,8 +61,8 @@ public class canicas_david {
         //Declaracion de variables
         int numCanicasJ1=10;    //se almacena las canicas del Jugador 1,  inicializada a 10.
         int numCanicasJ2=10;    //se almacena las canicas del Jugador 2,  inicializada a 10.
-        int apuestaJ1=0;        //se almacena la apuesta del jugador 1.
-        int apuestaJ2=0;        //se almacena la apuesta del jugador 2.
+        int apuestaJ1=-1;        //se almacena la apuesta del jugador 1.
+        int apuestaJ2=-1;        //se almacena la apuesta del jugador 2.
         String parImparJ1;      //se almacena la entrada del jugador 1 a la pregunta par/impar.
         String parImparJ2;      //se almacena la entrada del jugador 2 a la pregunta par/impar.
         boolean esPar=false;    //almacena true para par || false para impar.
@@ -83,18 +83,18 @@ public class canicas_david {
             maxCanicas = Math.min(numCanicasJ1, numCanicasJ2);
 
             //Pedimos apuesta jugador 1
-            while((apuestaJ1<0) || (apuestaJ1>(maxCanicas+1))){
-                System.out.println("¿Cuantas canicas quieres apostar: ?");
+            while((apuestaJ1<=0) || (apuestaJ1>(maxCanicas))){
+                System.out.println("¿Cuantas canicas quieres apostar?: ");
                 apuestaJ1 = sc.nextInt();//LANZAR EXCEPCION
             }
 
             //Pedimos jugada par/impar Jugador 1
-            System.out.println("¿Que crees que tiene el Jugador 2 (par/impar)?");
+            System.out.println("¿Que crees que tiene el Jugador 2 (par/impar)?: ");
             parImparJ1 = sc.next(); //LANZAR EXCEPCION
 
 
             //generamos apuesta Jugador 2
-            apuestaJ2 = random.nextInt(maxCanicas + 1); // +1 para incluir el ultimo digito
+            apuestaJ2 = random.nextInt(1,maxCanicas ); //
 
             //Mostramos:
             System.out.println("Canicas J1: "+numCanicasJ1);
