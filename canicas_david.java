@@ -3,5 +3,6 @@ public class canicas_david {
         //Canicas David
         System.out.println("CANICAS david");
         //Operador ternario para hacer apuesta inferiror
+        System.out.println("Introduce tu apuesta");
     }
 }
