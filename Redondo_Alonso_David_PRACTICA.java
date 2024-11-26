@@ -2,8 +2,10 @@
 Redondo, Alonso, David
 */
 
+
 import java.util.Scanner;
 import java.util.Random;
+import java.util.InputMismatchException;
 
 public class Redondo_Alonso_David_PRACTICA {
     public static void main(String[] args) {
@@ -15,6 +17,7 @@ public class Redondo_Alonso_David_PRACTICA {
         //Declaracion de variables
         int canicasJugador1 = 10;       //Jugador1 cuenta con 10 canicas inicialmente
         int canicasJugador2 = 10;       //Jugador2 cuenta con 10 canicas inicialmente
+
 
         //se decide el turno: devuelve true = turno jugador 1 / false= turno jugador 2
         boolean turnoJugador1 = random.nextBoolean();
@@ -34,15 +37,17 @@ public class Redondo_Alonso_David_PRACTICA {
                 // Turno del jugador 1 (humano)
 
                 System.out.println("************* TURNO JUGADOR 1 *************");
-                System.out.print("Jugador 1, ¿cuántas canicas quieres apostar?: ");
-                apuestaJugador = scanner.nextInt();
 
-                //bucle dentro turnoJ1 para control de apuesta (debe ser mayor de 1 y menor que apuestamaxima(math.min de canicas jugadores))
-                while (apuestaJugador < 1 || apuestaJugador > apuestaMaxima) {
-                    System.out.println("Número inválido. Puedes apostar entre 1 y " + apuestaMaxima + " canicas.");
-                    System.out.print("Intenta nuevamente: ");
-                    apuestaJugador = scanner.nextInt();
-                }
+                        System.out.print("Jugador 1, ¿cuántas canicas quieres apostar?: ");
+                        apuestaJugador = scanner.nextInt();
+
+                        //bucle dentro turnoJ1 para control de apuesta
+                        while (apuestaJugador < 1 || apuestaJugador > apuestaMaxima) {
+                            System.out.println("Número inválido. Puedes apostar entre 1 y " + apuestaMaxima + " canicas.");
+                            System.out.print("Intenta nuevamente: ");
+                            apuestaJugador = scanner.nextInt();
+                        }
+
 
                 //Se pide eleccion par/impar
                 System.out.print("Jugador 1, ¿qué crees que tiene el Jugador 2? (par/impar): ");
@@ -83,6 +88,7 @@ public class Redondo_Alonso_David_PRACTICA {
                 apuestaJugador = random.nextInt(apuestaMaxima) + 1;              //La apuesta generada atleatoriamente no puede superar apuestamaxima
                 String eleccion = random.nextBoolean() ? "par" : "impar";        //La eleccion par/impar se genera atleatoriamente.
 
+                //Se pregunta de igual manera la apuesta del jugador1
                 System.out.print("Jugador 1, ¿cuántas canicas quieres apostar?: ");
                 int canicasOcultasJugador1 = scanner.nextInt();
                 System.out.println("Jugador 2 cree que el Jugador 1 tiene un número " + eleccion + ".");
@@ -92,8 +98,10 @@ public class Redondo_Alonso_David_PRACTICA {
                     canicasOcultasJugador1 = scanner.nextInt();
                 }
 
+                //Comprobacion si esPar las canicas ocultas del jugador1
                 boolean esPar = canicasOcultasJugador1 % 2 == 0;
 
+                //De igual manera se generan respuestas para cada convinacion como en turnojugador1
                 System.out.println("\nResultado");
                 if ((esPar && eleccion.equals("par")) || (!esPar && eleccion.equals("impar"))) {
                     System.out.println("Jugador 2 GANA " + apuestaJugador + " canicas ya que el Jugador 1 tenía " + canicasOcultasJugador1 + " canicas.");
@@ -105,13 +113,17 @@ public class Redondo_Alonso_David_PRACTICA {
                     canicasJugador2 -= apuestaJugador;
                 }
             }
+            //Fin de turnos
 
+            //En el bucle, indiferentemente de los turnos: Mostrar canicas J1 y J2
             System.out.println("\nJugador 1 tiene " + canicasJugador1 + " canicas.");
             System.out.println("Jugador 2 tiene " + canicasJugador2 + " canicas.");
-            System.out.println("************* FIN TURNO JUGADOR 2 *************");
+
+            //se realiza el cambio de turno false es true / true es false
             turnoJugador1 = !turnoJugador1;
         }
 
+        //si se cierra el bucle gana quien aun tenga canicas.
         if (canicasJugador1 <= 0) {
             System.out.println("\n¡Jugador 2 (Ordenador) gana el juego!");
         } else {
